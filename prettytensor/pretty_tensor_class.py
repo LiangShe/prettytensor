@@ -1332,7 +1332,8 @@ def _strip_unnecessary_contents_from_stack(result, processed):
     processed.add(result)
   trace = []
   found = False
-  for f, line_no, method, _ in result._traceback:
+  for trace_content in result._traceback:
+    f, line_no, method = trace_content[0:3]
     if (method in ('_replace_deferred', '_construct') and
         f.endswith('pretty_tensor_class.py')):
       found = True
